@@ -7,8 +7,6 @@ Main idea: Figure out the sorted position of a pivot element q, then sort A[0..q
 #include <limits.h>
 #include "basic_operations.h"
 
-
-
 int partition(int* A, int p, int r) {
   int i = p-1;
   int j = p;
