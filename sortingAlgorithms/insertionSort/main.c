@@ -49,5 +49,6 @@ int main(int argc, char const *argv[]) {
   for (int i = 0; i < array_size; i++) A[i] = rand()%num_limit;
   insertionSort(A, array_size);
   for (int i=0; i < array_size; i++) printf("A[%i] = %i\n", i, A[i]);
+  destroy_array(A);
   return 0;
 }
