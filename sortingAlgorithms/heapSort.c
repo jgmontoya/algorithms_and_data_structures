@@ -19,7 +19,7 @@ int right(int i) {
   return 2*i+1;
 }
 
-void max_heapify(int* A, int heap_size ,int i) {
+void max_heapify(int* A, int heap_size, int i) {
   int l = left(i);
   int r = right(i);
   int max = i;
