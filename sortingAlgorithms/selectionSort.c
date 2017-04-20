@@ -1,7 +1,6 @@
 /*
-Task: To sort an array A[0..n-1]
-Main idea: To the left of the j-index everything is sorted.
-           On each iteration we move the value that on A[j] so that A[0..j] is sorted
+Main idea: Select the minimum value of A[0..n-1] and place it on A[0].
+           On each iteration we then select the min value of the remaining array.
 */
 #include <stdio.h>
 #include <stdlib.h>
@@ -23,14 +22,21 @@ void swap(int* A, int i, int j) {
   A[j] = aux;
 }
 
-void insertionSort(int* A, int n) {
-  for (int j=1; j < n; j++) {
-    int key = A[j];
-    int i = j-1;
-    while (i >= 0 && A[i] > key) {
-      swap(A, i+1, i); //A[i+1] <-> A[i]
-      i--;
+int get_min_i(int* A, int i, int j) {
+  // Returns index of the minimum value in A[i..j]
+  int current_min = i;
+  for (int k=i; k < j; k++) {
+    if (A[k] < A[current_min]) {
+      current_min = k;
     }
+  }
+  return current_min;
+}
+
+void selectionSort(int* A, int n) {
+  for (int i = 0; i < n; i++) {
+    int min_i = get_min_i(A, i ,n);
+    swap(A, i, min_i);
   }
 }
 
@@ -47,7 +53,7 @@ int main(int argc, char const *argv[]) {
   int num_limit = strtol(argv[2], NULL, 10);
   int* A = generate_array(array_size);
   for (int i = 0; i < array_size; i++) A[i] = rand()%num_limit;
-  insertionSort(A, array_size);
+  selectionSort(A, array_size);
   for (int i=0; i < array_size; i++) printf("A[%i] = %i\n", i, A[i]);
   destroy_array(A);
   return 0;
