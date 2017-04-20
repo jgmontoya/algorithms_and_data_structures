@@ -1,7 +1,7 @@
 #include <stdlib.h>
 
 int* generate_array(int n) {
-  int* array = malloc(n*sizeof(int));
+  int* array = calloc(n, sizeof(int));
   return array;
 }
 
@@ -17,14 +17,21 @@ void swap(int* A, int i, int j) {
 }
 
 int get_min_i(int* A, int i, int j) {
-  // Returns index of the minimum value in A[i..j]
+  // Returns index of the minimum value in A[i..j-1]
   int current_min = i;
   for (int k=i; k < j; k++) {
-    if (A[k] < A[current_min]) {
-      current_min = k;
-    }
+    if (A[k] < A[current_min]) current_min = k;
   }
   return current_min;
+}
+
+int get_max_i(int* A, int i, int j) {
+  // Returns index of the maximum value in A[i..j-1]
+  int current_max = i;
+  for (int k = i; k < j; k++) {
+    if (A[k] > A[current_max]) current_max = k;
+  }
+  return current_max;
 }
 
 int randint(int min, int max) {
