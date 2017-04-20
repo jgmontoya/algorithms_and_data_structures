@@ -5,22 +5,7 @@ Main idea: To the left of the j-index everything is sorted.
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-
-int* generate_array(int n) {
-  int* array = malloc(n*sizeof(int));
-  return array;
-}
-
-void destroy_array(int* array) {
-  free(array);
-}
-
-void swap(int* A, int i, int j) {
-  // Swaps elements with indexes i and j in the array A
-  int aux = A[i];
-  A[i] = A[j];
-  A[j] = aux;
-}
+#include "basic_operations.h"
 
 void insertionSort(int* A, int n) {
   for (int j=1; j < n; j++) {
