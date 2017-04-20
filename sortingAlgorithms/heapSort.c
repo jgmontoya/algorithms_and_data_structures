@@ -65,7 +65,7 @@ int main(int argc, char const *argv[]) {
   for (int i = 1; i < array_size+1; i++) A[i] = rand()%num_limit;
   printf("\n");
   heapSort(A, array_size);
-  for (int i=0; i < array_size+1; i++) printf("A[%i] = %i\n", i, A[i]);
+  for (int i=1; i < array_size+1; i++) printf("A[%i] = %i\n", i, A[i]);
   destroy_array(A);
   return 0;
 }
