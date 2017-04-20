@@ -26,7 +26,7 @@ int main(int argc, char const *argv[]) {
   int array_size = strtol(argv[1], NULL, 10);
   int num_limit = strtol(argv[2], NULL, 10);
   int* A = generate_array(array_size);
-  for (int i = 0; i < array_size; i++) A[i] = rand()%num_limit;
+  for (int i = 0; i < array_size; i++) A[i] = randint(0, num_limit);
   selectionSort(A, array_size);
   for (int i=0; i < array_size; i++) printf("A[%i] = %i\n", i, A[i]);
   destroy_array(A);

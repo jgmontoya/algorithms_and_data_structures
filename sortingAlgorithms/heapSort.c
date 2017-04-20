@@ -62,7 +62,7 @@ int main(int argc, char const *argv[]) {
   int array_size = strtol(argv[1], NULL, 10);
   int num_limit = strtol(argv[2], NULL, 10);
   int* A = generate_array(array_size+1);
-  for (int i = 1; i < array_size+1; i++) A[i] = rand()%num_limit;
+  for (int i = 1; i < array_size+1; i++) A[i] = randint(0, num_limit);
   printf("\n");
   heapSort(A, array_size);
   for (int i=1; i < array_size+1; i++) printf("A[%i] = %i\n", i, A[i]);

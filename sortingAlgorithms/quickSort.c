@@ -1,20 +1,38 @@
 /*
-Main idea: To the left of the j-index everything is sorted.
-           On each iteration we move the value that on A[j] so that A[0..j] is sorted
+Main idea: Figure out the sorted position of a pivot element q, then sort A[0..q-1] and A[q+1..n-1]
 */
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <limits.h>
 #include "basic_operations.h"
 
-void insertionSort(int* A, int n) {
-  for (int j=1; j < n; j++) {
-    int key = A[j];
-    int i = j-1;
-    while (i >= 0 && A[i] > key) {
-      swap(A, i+1, i); //A[i+1] <-> A[i]
-      i--;
+
+
+int partition(int* A, int p, int r) {
+  int i = p-1;
+  int j = p;
+  while (j <= r) {
+    if (A[j] <= A[r]) {
+      i++;
+      swap(A, i, j);
     }
+    j++;
+  }
+  return i;
+}
+
+int random_partition(int* A, int p, int r) {
+  int i = randint(p, r);
+  swap(A, r, i);
+  return partition(A, p, r);
+}
+
+void quickSort(int* A, int p, int r) {
+  if (p < r) {
+    int q = random_partition(A, p, r);
+    quickSort(A, p, q-1);
+    quickSort(A, q+1, r);
   }
 }
 
@@ -31,7 +49,7 @@ int main(int argc, char const *argv[]) {
   int num_limit = strtol(argv[2], NULL, 10);
   int* A = generate_array(array_size);
   for (int i = 0; i < array_size; i++) A[i] = randint(0, num_limit);
-  insertionSort(A, array_size);
+  quickSort(A, 0, array_size-1);
   for (int i=0; i < array_size; i++) printf("A[%i] = %i\n", i, A[i]);
   destroy_array(A);
   return 0;

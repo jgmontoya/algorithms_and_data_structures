@@ -1,3 +1,4 @@
+#include <stdlib.h>
 
 int* generate_array(int n) {
   int* array = malloc(n*sizeof(int));
@@ -24,4 +25,8 @@ int get_min_i(int* A, int i, int j) {
     }
   }
   return current_min;
+}
+
+int randint(int min, int max) {
+return min + rand() / (RAND_MAX / (max - min + 1) + 1);
 }
